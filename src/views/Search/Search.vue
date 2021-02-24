@@ -1,16 +1,11 @@
 <template>
-  <router-view />
-  <FooterGuide />
+  <h3>Search</h3>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import FooterGuide from '@/components/FooterGuide.vue'
 export default defineComponent({
-  name: 'App',
-  components: {
-    FooterGuide,
-  },
+  name: 'Search',
 })
 </script>
 
