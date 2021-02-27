@@ -1,10 +1,6 @@
 <template>
   <section class="profile">
-    <header class="header">
-      <a class="header_title">
-        <span class="header_title_text">我的</span>
-      </a>
-    </header>
+    <HeaderTop title="我的" />
     <section class="profile-number">
       <a href="javascript:" class="profile-link">
         <div class="profile_image">
@@ -97,8 +93,12 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
+import HeaderTop from '@/components/HeaderTop.vue'
 export default defineComponent({
   name: 'Profile',
+  components: {
+    HeaderTop,
+  },
 })
 </script>
 

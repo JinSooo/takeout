@@ -1,10 +1,6 @@
 <template>
   <section class="search">
-    <header class="header">
-      <a class="header_title">
-        <span class="header_title_text">搜索</span>
-      </a>
-    </header>
+    <HeaderTop title="搜索" />
     <form class="search_form" action="#">
       <input type="search" name="search" placeholder="请输入商家或美食名称" class="search_input" />
       <input type="submit" name="submit" class="search_submit" />
@@ -14,8 +10,12 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
+import HeaderTop from '@/components/HeaderTop.vue'
 export default defineComponent({
   name: 'Search',
+  components: {
+    HeaderTop,
+  },
 })
 </script>
 

@@ -1,17 +1,18 @@
 <template>
   <section class="msite">
     <!--首页头部-->
-    <header class="msite_header">
-      <span class="header_search">
-        <i class="iconfont icon-sousuo"></i>
-      </span>
-      <span class="header_title">
-        <span class="header_title_text ellipsis">昌平区北七家宏福科技园(337省道北)</span>
-      </span>
-      <span class="header_login">
-        <span class="header_login_text">登录|注册</span>
-      </span>
-    </header>
+    <HeaderTop class="msite_header" title="昌平区北七家宏福科技园(337省道北)">
+      <template #left>
+        <span class="header_search">
+          <i class="iconfont icon-sousuo"></i>
+        </span>
+      </template>
+      <template #right>
+        <span class="header_login">
+          <span class="header_login_text">登录 | 注册</span>
+        </span>
+      </template>
+    </HeaderTop>
     <!--首页导航-->
     <nav class="msite_nav">
       <div class="swiper-container">
@@ -314,8 +315,12 @@
 <script lang="ts">
 import { defineComponent, onMounted, nextTick } from 'vue'
 import { Swiper, Pagination } from 'swiper'
+import HeaderTop from '@/components/HeaderTop.vue'
 export default defineComponent({
   name: 'Takeout',
+  components: {
+    HeaderTop,
+  },
   setup() {
     // 初始化Swiper
     const initSwiper = () => {
