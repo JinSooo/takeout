@@ -1,9 +1,9 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 
 import Takeout from '@/views/Takeout/Takeout.vue'
-import Search from '@/views/Takeout/Search.vue'
-import Order from '@/views/Takeout/Order.vue'
-import Profile from '@/views/Takeout/Profile.vue'
+import Search from '@/views/Search/Search.vue'
+import Order from '@/views/Order/Order.vue'
+import Profile from '@/views/Profile/Profile.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
