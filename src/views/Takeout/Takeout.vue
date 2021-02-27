@@ -8,9 +8,9 @@
         </span>
       </template>
       <template #right>
-        <span class="header_login">
+        <router-link to="/login" class="header_login">
           <span class="header_login_text">登录 | 注册</span>
-        </span>
+        </router-link>
       </template>
     </HeaderTop>
     <!--首页导航-->
