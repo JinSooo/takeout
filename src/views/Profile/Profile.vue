@@ -2,17 +2,17 @@
   <section class="profile">
     <HeaderTop title="我的" />
     <section class="profile-number">
-      <router-link to="/login" class="profile-link">
+      <router-link :to="Store.userInfo._id ? '' : '/login'" class="profile-link">
         <div class="profile_image">
           <i class="iconfont icon-person"></i>
         </div>
         <div class="user-info">
-          <p class="user-info-top">登录/注册</p>
+          <p class="user-info-top ellipsis">{{ Store.userInfo._id || '登录/注册' }}</p>
           <p>
             <span class="user-icon">
               <i class="iconfont icon-shouji icon-mobile"></i>
             </span>
-            <span class="icon-mobile-number">暂无绑定手机号</span>
+            <span class="icon-mobile-number">{{ Store.userInfo.phone || '暂无绑定手机号' }}</span>
           </p>
         </div>
         <span class="arrow">
@@ -88,23 +88,51 @@
         </div>
       </a>
     </section>
+    <section class="profile_my_order border-1px">
+      <van-button type="danger" v-if="Store.userInfo._id" @click="logoutPro">退出登录</van-button>
+    </section>
   </section>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, inject } from 'vue'
 import HeaderTop from '@/components/HeaderTop.vue'
+import { logout } from '@/utils/api'
+import { Toast, Dialog } from 'vant'
 export default defineComponent({
   name: 'Profile',
   components: {
     HeaderTop,
+  },
+  setup() {
+    const Store: any = inject('store')
+    /* **************************************************************************************** */
+    const logoutPro = () => {
+      Dialog.confirm({
+        title: '退出登录',
+        message: '确定要退出登录吗 ？',
+      })
+        .then(async () => {
+          await logout()
+          Store.userInfo = []
+          Toast.success('退出成功')
+        })
+        .catch(() => {
+          // on cancel
+          Toast.success('取消退出')
+        })
+    }
+    return {
+      Store,
+      logoutPro,
+    }
   },
 })
 </script>
 
 <style lang="stylus" scoped>
 @import '../../assets/stylus/mixins.styl'
-&.profile //我的
+.profile //我的
   width 100%
   overflow hidden
   .profile-number
@@ -134,6 +162,7 @@ export default defineComponent({
           font-size 18px
           color #fff
           &.user-info-top
+            width: 200px;
             padding-bottom 8px
           .user-icon
             display inline-block
@@ -235,4 +264,6 @@ export default defineComponent({
           .icon-jiantou1
             color #bbb
             font-size 10px
+  .van-button
+    width 100%
 </style>

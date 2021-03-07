@@ -1,188 +1,65 @@
 <template>
-  <ul class="shop_list">
-    <li class="shop_li border-1px">
+  <ul class="shop_list" v-if="Store.shops.length">
+    <li class="shop_li border-1px" v-for="(shop, index) in Store.shops" :key="index">
       <a>
-        <div class="shop_left">
-          <img class="shop_img" src="../assets/images/shop/1.jpg" />
-        </div>
-        <div class="shop_right">
-          <section class="shop_detail_header">
-            <h4 class="shop_title ellipsis">锄禾日当午，汗滴禾下土</h4>
-            <ul class="shop_detail_ul">
-              <li class="supports">保</li>
-              <li class="supports">准</li>
-              <li class="supports">票</li>
-            </ul>
-          </section>
-          <section class="shop_rating_order">
-            <section class="shop_rating_order_left">
-              <div class="star star-24">
-                <span class="star-item on"></span>
-                <span class="star-item on"></span>
-                <span class="star-item on"></span>
-                <span class="star-item half"></span>
-                <span class="star-item off"></span>
-              </div>
-              <div class="rating_section">
-                3.6
-              </div>
-              <div class="order_section">
-                月售106单
-              </div>
+        <router-link to="/shop">
+          <div class="shop_left">
+            <img
+              class="shop_img"
+              src="http://fuss10.elemecdn.com/8/a6/453f65f16b1391942af11511b7a90jpeg.jpeg?imageView2/1/w/750/h/750"
+            />
+          </div>
+          <div class="shop_right">
+            <section class="shop_detail_header">
+              <h4 class="shop_title ellipsis">{{ shop.name }}</h4>
+              <ul class="shop_detail_ul">
+                <li class="supports" v-for="(s, index) in shop.supports" :key="index">{{ s.icon_name }}</li>
+              </ul>
             </section>
-            <section class="shop_rating_order_right">
-              <span class="delivery_style delivery_right">硅谷专送</span>
+            <section class="shop_rating_order">
+              <section class="shop_rating_order_left">
+                <Star :rating="shop.rating" :size="24" />
+                <div class="rating_section">
+                  {{ shop.rating }}
+                </div>
+                <div class="order_section">月售{{ shop.recent_order_num }}单</div>
+              </section>
+              <section class="shop_rating_order_right">
+                <span class="delivery_style delivery_right">{{ shop.delivery_mode.text }}</span>
+              </section>
             </section>
-          </section>
-          <section class="shop_distance">
-            <p class="shop_delivery_msg">
-              <span>¥20起送</span>
-              <span class="segmentation">/</span>
-              <span>配送费约¥5</span>
-            </p>
-          </section>
-        </div>
-      </a>
-    </li>
-    <li class="shop_li border-1px">
-      <a>
-        <div class="shop_left">
-          <img class="shop_img" src="../assets/images/shop/2.jpg" />
-        </div>
-        <div class="shop_right">
-          <section class="shop_detail_header">
-            <h4 class="shop_title ellipsis">锄禾日当午，汗滴禾下土</h4>
-            <ul class="shop_detail_ul">
-              <li class="supports">保</li>
-              <li class="supports">准</li>
-              <li class="supports">票</li>
-            </ul>
-          </section>
-          <section class="shop_rating_order">
-            <section class="shop_rating_order_left">
-              <div class="star star-24">
-                <span class="star-item on"></span>
-                <span class="star-item on"></span>
-                <span class="star-item on"></span>
-                <span class="star-item on"></span>
-                <span class="star-item off"></span>
-              </div>
-              <div class="rating_section">
-                4.1
-              </div>
-              <div class="order_section">
-                月售106单
-              </div>
+            <section class="shop_distance">
+              <p class="shop_delivery_msg">
+                <span>¥{{ shop.float_minimum_order_amount }}起送</span>
+                <span class="segmentation">/</span>
+                <span>配送费约¥{{ shop.float_delivery_fee }}</span>
+              </p>
             </section>
-            <section class="shop_rating_order_right">
-              <span class="delivery_style delivery_right">硅谷专送</span>
-            </section>
-          </section>
-          <section class="shop_distance">
-            <p class="shop_delivery_msg">
-              <span>¥20起送</span>
-              <span class="segmentation">/</span>
-              <span>配送费约¥5</span>
-            </p>
-          </section>
-        </div>
-      </a>
-    </li>
-    <li class="shop_li border-1px">
-      <a>
-        <div class="shop_left">
-          <img class="shop_img" src="../assets/images/shop/3.jpg" />
-        </div>
-        <div class="shop_right">
-          <section class="shop_detail_header">
-            <h4 class="shop_title ellipsis">锄禾日当午，汗滴禾下土</h4>
-            <ul class="shop_detail_ul">
-              <li class="supports">保</li>
-              <li class="supports">准</li>
-              <li class="supports">票</li>
-            </ul>
-          </section>
-          <section class="shop_rating_order">
-            <section class="shop_rating_order_left">
-              <div class="star star-24">
-                <span class="star-item on"></span>
-                <span class="star-item on"></span>
-                <span class="star-item on"></span>
-                <span class="star-item off"></span>
-                <span class="star-item off"></span>
-              </div>
-              <div class="rating_section">
-                3.2
-              </div>
-              <div class="order_section">
-                月售106单
-              </div>
-            </section>
-            <section class="shop_rating_order_right">
-              <span class="delivery_style delivery_right">硅谷专送</span>
-            </section>
-          </section>
-          <section class="shop_distance">
-            <p class="shop_delivery_msg">
-              <span>¥20起送</span>
-              <span class="segmentation">/</span>
-              <span>配送费约¥5</span>
-            </p>
-          </section>
-        </div>
-      </a>
-    </li>
-    <li class="shop_li border-1px">
-      <a>
-        <div class="shop_left">
-          <img class="shop_img" src="../assets/images/shop/4.jpg" />
-        </div>
-        <div class="shop_right">
-          <section class="shop_detail_header">
-            <h4 class="shop_title ellipsis">锄禾日当午，汗滴禾下土</h4>
-            <ul class="shop_detail_ul">
-              <li class="supports">保</li>
-              <li class="supports">准</li>
-              <li class="supports">票</li>
-            </ul>
-          </section>
-          <section class="shop_rating_order">
-            <section class="shop_rating_order_left">
-              <div class="star star-24">
-                <span class="star-item on"></span>
-                <span class="star-item on"></span>
-                <span class="star-item on"></span>
-                <span class="star-item half"></span>
-                <span class="star-item off"></span>
-              </div>
-              <div class="rating_section">
-                3.6
-              </div>
-              <div class="order_section">
-                月售106单
-              </div>
-            </section>
-            <section class="shop_rating_order_right">
-              <span class="delivery_style delivery_right">硅谷专送</span>
-            </section>
-          </section>
-          <section class="shop_distance">
-            <p class="shop_delivery_msg">
-              <span>¥20起送</span>
-              <span class="segmentation">/</span>
-              <span>配送费约¥5</span>
-            </p>
-          </section>
-        </div>
+          </div>
+        </router-link>
       </a>
     </li>
   </ul>
+  <!-- 当在加载时显示 -->
+  <img src="../assets/images/shop_back.svg" alt="" v-for="a in 6" :key="a" v-else />
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, inject } from 'vue'
+import Star from './Star.vue'
 export default defineComponent({
   name: 'ShopList',
+  components: {
+    Star,
+  },
+  setup() {
+    const baseImageUrl = 'http://cangdu.org:8001/img/'
+    const Store = inject('store')
+    return {
+      Store,
+      baseImageUrl,
+    }
+  },
 })
 </script>
 
@@ -249,54 +126,6 @@ export default defineComponent({
           .shop_rating_order_left
             float left
             color #ff9a0d
-            .star //2x图 3x图
-              float left
-              font-size 0
-              .star-item
-                display inline-block
-                background-repeat no-repeat
-              &.star-48
-                .star-item
-                  width 20px
-                  height 20px
-                  margin-right 22px
-                  background-size 20px 20px
-                  &:last-child
-                    margin-right: 0
-                  &.on
-                    bg-image('../assets/images/stars/star48_on')
-                  &.half
-                    bg-image('../assets/images/stars/star48_half')
-                  &.off
-                    bg-image('../assets/images/stars/star48_off')
-              &.star-36
-                .star-item
-                  width 15px
-                  height 15px
-                  margin-right 6px
-                  background-size 15px 15px
-                  &:last-child
-                    margin-right 0
-                  &.on
-                    bg-image('../assets/images/stars/star36_on')
-                  &.half
-                    bg-image('../assets/images/stars/star36_half')
-                  &.off
-                    bg-image('../assets/images/stars/star36_off')
-              &.star-24
-                .star-item
-                  width 10px
-                  height 10px
-                  margin-right 3px
-                  background-size 10px 10px
-                  &:last-child
-                    margin-right 0
-                  &.on
-                    bg-image('../assets/images/stars/star24_on')
-                  &.half
-                    bg-image('../assets/images/stars/star24_half')
-                  &.off
-                    bg-image('../assets/images/stars/star24_off')
             .rating_section
               float left
               font-size 10px
